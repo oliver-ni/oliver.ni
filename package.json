@@ -1,0 +1,18 @@
+{
+  "name": "oliver.ni",
+  "version": "1.0.0",
+  "author": "Oliver Ni <oliver.ni@gmail.com>",
+  "scripts": {
+    "build": "run-s \"build:*\"",
+    "build:css": "npm run generate:css -- --minify",
+    "build:zola": "zola build",
+    "dev": "run-p \"dev:*\"",
+    "dev:css": "npm run generate:css -- --watch",
+    "dev:zola": "zola serve",
+    "generate:css": "tailwindcss -i ./static/input.css -o ./static/style.css"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5",
+    "tailwindcss": "^3.4.3"
+  }
+}
