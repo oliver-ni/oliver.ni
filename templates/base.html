@@ -1,0 +1,80 @@
+{% import "macros.html" as macros %}
+
+<!DOCTYPE html>
+
+<html lang="en" class="bg-gray-50">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {% set permalink = section.permalink
+  | default(value=page.permalink
+  | default(value="")) %}
+
+  {% if permalink %}
+  <link rel="canonical" href="{{ permalink | safe }}" />
+  {% endif %}
+
+  {% set title = section.title
+  | default(value=page.title
+  | default(value="Oliver Ni")) %}
+
+  <title>{{ title }}</title>
+  <meta name="og:title" content="{{ title }}" />
+
+  {% set description = section.description
+  | default(value=section.summary
+  | default(value=page.description
+  | default(value=page.summary
+  | default(value=""))))
+  | striptags %}
+
+  {% if description %}
+  <meta name="description" content="{{ description }}" />
+  <meta name="og:description" content="{{ description }}" />
+  {% endif %}
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Oliver Ni" />
+
+  <link rel="preconnect" href="https://rsms.me">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <link rel="stylesheet" href="/style.css?{{ get_random(end=1000000) }}">
+</head>
+
+<body class="overflow-y-scroll">
+  <div class="max-w-2xl min-h-screen p-4 md:p-8 mx-auto flex flex-col gap-4 md:gap-8">
+    <header class="flex flex-col md:flex-row gap-2 md:gap-4 md:justify-between items-center">
+      <a class="text-2xl font-semibold" href="/">Oliver Ni</a>
+
+      <nav id="navbar" class="flex gap-4 items-stretch">
+        {{ macros::nav_link(path="@/_index.md", label="home") }}
+        {{ macros::nav_link(path="@/projects.md", label="projects") }}
+        {{ macros::nav_link(path="@/work.md", label="work") }}
+        {{ macros::nav_link(path="/resume.pdf", label="resume") }}
+      </nav>
+    </header>
+
+    <div class="flex-1 flex flex-col gap-4 md:gap-8">
+      {% block content %}{% endblock %}
+    </div>
+
+    <div class="flex gap-4 justify-center text-gray-400">
+      <a href="mailto:oliverni@berkeley.edu"><i class="bi bi-envelope-fill"></i> oliverni@berkeley.edu</a>
+      <a href="https://github.com/oliver-ni"><i class="bi bi-github"></i> oliver-ni</a>
+      <a href="https://signal.me/#eu/QWrky62bFy_F_J1O1G3NpWwDyKkiPS4dZ_g7NYYvcdroKuVgZqtDUrGWPUxDkJ5G">
+        <i class="bi bi-signal"></i>
+        oliverni.01
+      </a>
+    </div>
+  </div>
+</body>
+
+</html>

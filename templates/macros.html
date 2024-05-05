@@ -1,0 +1,23 @@
+{# Creates a navigation link to be used in the navbar. #}
+{# The `path` argument is the path to the page. #}
+{% macro nav_link(path, label) %}
+
+{% set href = get_url(path=path) %}
+{% set active = current_url | default(value='') == href %}
+<p class="first:hidden text-gray-400 select-none">⁄</p>
+<a href="{{ href }}" class="text-gray-600 {% if active %} !text-black font-semibold {% endif %}">
+  {{ label }}
+</a>
+
+{% endmacro nav_link %}
+
+
+{# Renders a string to HTML, replacing newlines with HTML line breaks. #}
+{% macro newline_break(str) %}
+
+{% for line in str | split(pat="\n") %}
+{{ line }}
+{% if not loop.last %}<br>{% endif %}
+{% endfor %}
+
+{% endmacro newline_break %}
