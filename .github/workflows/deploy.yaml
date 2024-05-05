@@ -1,0 +1,44 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: Production
+      url: https://oliver.ni/
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install node dependencies
+        run: npm install
+
+      - name: Install zola
+        run: >
+          wget -q -O -
+          "https://github.com/getzola/zola/releases/download/v0.17.2/zola-v0.17.2-x86_64-unknown-linux-gnu.tar.gz"
+          | tar xzf - -C /usr/local/bin
+
+      - name: Build site
+        run: npm run build
+
+      - name: Deploy
+        uses: burnett01/rsync-deployments@7.0.1
+        with:
+          switches: -avPh --delete --exclude=.htaccess
+          path: public/
+          remote_path: ~/public_html/oliver.ni
+          remote_host: tsunami.ocf.berkeley.edu
+          remote_user: oliverni
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
