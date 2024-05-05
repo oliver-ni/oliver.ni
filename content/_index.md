@@ -1,5 +1,6 @@
 +++
 title = "Oliver Ni"
+description = "Oliver Ni's personal website"
 +++
 
 Hi! I'm a computer programmer from San Jose, CA. I currently study computer
