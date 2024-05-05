@@ -11,7 +11,7 @@ distributed systems and cloud computing. I work heavily with tools like
 [Kubernetes] and am a big fan of [Elixir], [Rust], and [Nix/NixOS].
 
 At UC Berkeley, I'm involved in the [Open Computing Facility], the [Berkeley
-Math Tournament], [AutoLAB], and [CS 162]. In my free time, I also participate
+Math Tournament], [AUTOLab], and [CS 162]. In my free time, I also participate
 in events such as [Advent of Code], where I placed 17th last year.
 
 [Kubernetes]: https://kubernetes.io/
@@ -20,6 +20,6 @@ in events such as [Advent of Code], where I placed 17th last year.
 [Nix/NixOS]: https://nixos.org/
 [Open Computing Facility]: https://www.ocf.berkeley.edu/
 [Berkeley Math Tournament]: https://berkeley.mt/
-[AutoLAB]: https://autolab.berkeley.edu/
+[AUTOLab]: https://autolab.berkeley.edu/
 [CS 162]: https://cs162.org/
 [Advent of Code]: https://adventofcode.com/
