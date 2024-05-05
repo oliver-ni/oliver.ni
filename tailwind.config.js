@@ -15,15 +15,15 @@ module.exports = {
             a: {
               textDecoration: "none",
               fontWeight: "medium",
-              // color: theme("colors.blue.500"),
-              transitionProperty: theme("transitionProperty.shadow"),
+              transitionProperty: theme("transitionProperty.all"),
               transitionTimingFunction: theme(
                 "transitionTimingFunction.in-out"
               ),
               transitionDuration: theme("transitionDuration.150"),
               boxShadow: `inset 0 -0.4em ${theme("colors.gray.200")}`,
               "&:hover": {
-                boxShadow: `inset 0 -0.6em ${theme("colors.gray.300")}`,
+                color: theme("colors.blue.500"),
+                boxShadow: `inset 0 -0.6em ${theme("colors.blue.100")}`,
               },
             },
           },
