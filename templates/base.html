@@ -49,8 +49,8 @@
   <link rel="stylesheet" href="/style.css?{{ get_random(end=1000000) }}">
 </head>
 
-<body class="overflow-y-scroll">
-  <div class="max-w-2xl min-h-screen p-4 md:p-8 md:pt-16 mx-auto flex flex-col gap-4 md:gap-8">
+<body class="overflow-y-scroll flex flex-col min-h-screen p-4 md:p-8 md:pt-16">
+  <div class="w-full max-w-[622px] flex-1 mx-auto flex flex-col gap-8">
     <header class="flex flex-col md:flex-row gap-2 md:gap-4 md:justify-between items-center">
       <a class="text-2xl font-semibold" href="/">Oliver Ni</a>
 
@@ -64,6 +64,16 @@
 
     <div class="flex-1 flex flex-col gap-4 md:gap-8">
       {% block content %}{% endblock %}
+    </div>
+
+    <div class="flex flex-wrap gap-[1px]">
+      {{ macros::img_link_8831(src="yolkgirl.gif", href="https://trinityjchung.com/") }}
+      {{ macros::img_link_8831(src="michael.gif", href="https://michaellisano.com/") }}
+      {{ macros::img_link_8831(src="adym.png", href="https://adymchenko.github.io/") }}
+      {{ macros::img_link_8831(src="jaysa.jpg", href="https://jaysa.net/") }}
+      {{ macros::img_link_8831(src="8831.png", href="https://eightyeightthirty.one/") }}
+      {{ macros::img_link_8831(src="nixos.png", href="https://nixos.org/") }}
+      {{ macros::img_link_8831(src="ocf.png", href="https://www.ocf.berkeley.edu/") }}
     </div>
 
     <div class="flex gap-4 justify-center text-gray-500">

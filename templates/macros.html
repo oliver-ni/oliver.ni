@@ -16,6 +16,14 @@
 {% endmacro nav_link %}
 
 
+{# Renders an link containing a 88x31 button image #}
+{% macro img_link_8831(src, href) %}
+<a href="{{ href }}">
+  <img class="[image-rendering:pixelated]" src="/8831/{{ src }}" width="88" height="31" alt="88x31 button {{ src }}" />
+</a>
+{% endmacro nav_link %}
+
+
 {# Renders a string to HTML, replacing newlines with HTML line breaks. #}
 {% macro newline_break(str) %}
 
