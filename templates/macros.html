@@ -5,9 +5,13 @@
 {% set href = get_url(path=path) %}
 {% set active = current_url | default(value='') == href %}
 <p class="first:hidden text-gray-400 select-none">⁄</p>
-<a href="{{ href }}" class="text-gray-600 {% if active %} !text-black font-semibold {% endif %}">
-  {{ label }}
-</a>
+<div class="relative">
+  <span class="invisible font-semibold">{{ label }}</span>
+  <a href="{{ href }}"
+    class="absolute inset-0 text-center text-gray-600 {% if active %} !text-black font-semibold {% endif %}">
+    {{ label }}
+  </a>
+</div>
 
 {% endmacro nav_link %}
 
