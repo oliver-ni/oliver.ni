@@ -12,6 +12,7 @@
     "generate:css": "tailwindcss -i ./static/input.css -o ./static/style.css"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.13",
     "npm-run-all": "^4.1.5",
     "tailwindcss": "^3.4.3"
   }
