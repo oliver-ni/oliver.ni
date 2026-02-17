@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for section in page.extra.sections %}
+<h1 class="text-3xl italic font-serif text-gray-600">{{ section.heading }}</h1>
+
+<div class="flex flex-col gap-6 leading-7 text-gray-700">
+  {% for item in section.items %}
+  <div>
+    <div class="font-semibold">{{ item.title }}</div>
+    {% for subtitle in item.subtitles %}
+    <div class="text-gray-500">{{ subtitle }}</div>
+    {% endfor %}
+    <div class="mt-1">{{ item.description }}</div>
+  </div>
+  {% endfor %}
+</div>
+{% endfor %}
+
+{% endblock %}
