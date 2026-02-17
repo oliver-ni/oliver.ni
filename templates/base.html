@@ -1,80 +1,85 @@
 {% import "macros.html" as macros %}
 
 <!DOCTYPE html>
-
 <html lang="en" class="bg-gray-50">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% set permalink = section.permalink | default(value=page.permalink | default(value="")) %}
+    {% if permalink %}
+      <link rel="canonical" href="{{ permalink | safe }}" />
+    {% endif %}
 
-  {% set permalink = section.permalink
-  | default(value=page.permalink
-  | default(value="")) %}
+    {% set title = section.title | default(value=page.title | default(value="Oliver Ni")) %}
+    <title>{{ title }}</title>
+    <meta name="og:title" content="{{ title }}" />
 
-  {% if permalink %}
-  <link rel="canonical" href="{{ permalink | safe }}" />
-  {% endif %}
+    {% set description = section.description
+      | default(value=section.summary
+      | default(value=page.description
+      | default(value=page.summary
+      | default(value=""))))
+      | striptags %}
 
-  {% set title = section.title
-  | default(value=page.title
-  | default(value="Oliver Ni")) %}
+    {% if description %}
+      <meta name="description" content="{{ description }}" />
+      <meta name="og:description" content="{{ description }}" />
+    {% endif %}
 
-  <title>{{ title }}</title>
-  <meta name="og:title" content="{{ title }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Oliver Ni" />
 
-  {% set description = section.description
-  | default(value=section.summary
-  | default(value=page.description
-  | default(value=page.summary
-  | default(value=""))))
-  | striptags %}
+    <link rel="preconnect" href="https://rsms.me" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
 
-  {% if description %}
-  <meta name="description" content="{{ description }}" />
-  <meta name="og:description" content="{{ description }}" />
-  {% endif %}
+    <link rel="stylesheet" href="/style.css?{{ get_random(end=1000000) }}" />
+  </head>
 
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Oliver Ni" />
+  <body class="overflow-y-scroll flex flex-col min-h-screen p-4 pt-8 md:p-8 md:pt-16">
+    <div class="w-full max-w-[622px] flex-1 mx-auto flex flex-col gap-8">
+      <header class="flex flex-col md:flex-row gap-2 md:gap-4 md:justify-between items-center">
+        <a class="text-2xl font-semibold" href="/">Oliver Ni</a>
+        <nav id="navbar" class="flex gap-4 items-stretch">
+          {{ macros::nav_link(path="@/_index.md", label="home") }}
+          {{ macros::nav_link(path="@/work.md", label="work") }}
+          {{ macros::nav_link(path="/resume.pdf", label="resume") }}
+        </nav>
+      </header>
 
-  <link rel="preconnect" href="https://rsms.me">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+      <main class="flex-1 flex flex-col gap-4 md:gap-8">
+        {% block content %}{% endblock %}
+      </main>
 
-  <link rel="stylesheet" href="/style.css?{{ get_random(end=1000000) }}">
-</head>
-
-<body class="overflow-y-scroll flex flex-col min-h-screen p-4 pt-8 md:p-8 md:pt-16">
-  <div class="w-full max-w-[622px] flex-1 mx-auto flex flex-col gap-8">
-    <header class="flex flex-col md:flex-row gap-2 md:gap-4 md:justify-between items-center">
-      <a class="text-2xl font-semibold" href="/">Oliver Ni</a>
-
-      <nav id="navbar" class="flex gap-4 items-stretch">
-        {{ macros::nav_link(path="@/_index.md", label="home") }}
-        {{ macros::nav_link(path="@/projects.md", label="projects") }}
-        {{ macros::nav_link(path="@/work.md", label="work") }}
-        {{ macros::nav_link(path="/resume.pdf", label="resume") }}
-      </nav>
-    </header>
-
-    <div class="flex-1 flex flex-col gap-4 md:gap-8">
-      {% block content %}{% endblock %}
+      <footer
+        class="flex flex-col md:flex-row gap-2 items-center justify-center
+               text-sm text-gray-400 border-t border-gray-200 pt-6"
+      >
+        <a href="mailto:oliverni@berkeley.edu" class="transition-colors hover:text-gray-600">
+          <i class="bi bi-envelope-fill"></i> oliverni@berkeley.edu
+        </a>
+        <span class="hidden md:inline">·</span>
+        <a href="https://github.com/oliver-ni" class="transition-colors hover:text-gray-600">
+          <i class="bi bi-github"></i> oliver-ni
+        </a>
+        <span class="hidden md:inline">·</span>
+        <a
+          href="https://signal.me/#eu/QWrky62bFy_F_J1O1G3NpWwDyKkiPS4dZ_g7NYYvcdroKuVgZqtDUrGWPUxDkJ5G"
+          class="transition-colors hover:text-gray-600"
+        >
+          <i class="bi bi-signal"></i> oliverni.01
+        </a>
+      </footer>
     </div>
-
-    <div class="flex flex-col md:flex-row gap-4 items-center justify-center text-gray-500">
-      <a href="mailto:oliverni@berkeley.edu"><i class="bi bi-envelope-fill"></i> oliverni@berkeley.edu</a>
-      <a href="https://github.com/oliver-ni"><i class="bi bi-github"></i> oliver-ni</a>
-      <a href="https://signal.me/#eu/QWrky62bFy_F_J1O1G3NpWwDyKkiPS4dZ_g7NYYvcdroKuVgZqtDUrGWPUxDkJ5G">
-        <i class="bi bi-signal"></i>
-        oliverni.01
-      </a>
-    </div>
-  </div>
-</body>
-
+  </body>
 </html>

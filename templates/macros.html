@@ -1,35 +1,32 @@
-{# Creates a navigation link to be used in the navbar. #}
-{# The `path` argument is the path to the page. #}
 {% macro nav_link(path, label) %}
-
-{% set href = get_url(path=path) %}
-{% set active = current_url | default(value='') == href %}
-<p class="first:hidden text-gray-400 select-none">⁄</p>
-<div class="relative">
-  <span class="invisible font-semibold">{{ label }}</span>
-  <a href="{{ href }}"
-    class="absolute inset-0 text-center text-gray-600 {% if active %} !text-black font-semibold {% endif %}">
-    {{ label }}
-  </a>
-</div>
-
+  {% set href = get_url(path=path) %}
+  {% set active = current_url | default(value='') == href %}
+  <p class="first:hidden text-gray-400 select-none">⁄</p>
+  <div class="relative">
+    <span class="invisible font-semibold">{{ label }}</span>
+    <a
+      href="{{ href }}"
+      class="absolute inset-0 text-center text-gray-600 {% if active %}!text-black font-semibold{% endif %}"
+    >
+      {{ label }}
+    </a>
+  </div>
 {% endmacro nav_link %}
 
-
-{# Renders an link containing a 88x31 button image #}
 {% macro img_link_8831(src, href) %}
-<a href="{{ href }}">
-  <img class="[image-rendering:pixelated]" src="/8831/{{ src }}" width="88" height="31" alt="88x31 button {{ src }}" />
-</a>
-{% endmacro nav_link %}
+  <a href="{{ href }}">
+    <img
+      class="[image-rendering:pixelated]"
+      src="/8831/{{ src }}"
+      width="88"
+      height="31"
+      alt="88x31 button {{ src }}"
+    />
+  </a>
+{% endmacro img_link_8831 %}
 
-
-{# Renders a string to HTML, replacing newlines with HTML line breaks. #}
 {% macro newline_break(str) %}
-
-{% for line in str | split(pat="\n") %}
-{{ line }}
-{% if not loop.last %}<br>{% endif %}
-{% endfor %}
-
+  {% for line in str | split(pat="\n") %}
+    {{ line }}{% if not loop.last %}<br />{% endif %}
+  {% endfor %}
 {% endmacro newline_break %}
